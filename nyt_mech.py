@@ -50,7 +50,8 @@ class BayesFilter:
     ncorpus = {}
     pcount = 0
     ncount = 0
-    multiple  = 1 # number of times to insert
+    multiple = 1 # number of times to insert
+    unique = 5    # number of times needed to be seen before useful
 
     def __init__(self,mult=1):
         self.mult = mult
@@ -68,9 +69,9 @@ class BayesFilter:
         prob  = 0.5
         nprob = 0.5
         for w in tokens:
-            p = self.pcorpus.get(w,0)
-            n = self.ncorpus.get(w,0)
-            if p+n < 1:
+            p = self.pcorpus.get(w,1)
+            n = self.ncorpus.get(w,1)
+            if p+n < 5:
                 continue
             tempprob = p/float(p+n)
             prob *= tempprob    # I don't like this method, check this
@@ -81,8 +82,8 @@ class BayesFilter:
         '''scale: 0-1, mult: how many times to count'''
         tokens = self.tokenize(page)
         for t in tokens:
-            self.pcorpus[t] = self.pcorpus.get(t,0)+scale*self.mult
-            self.ncorpus[t] = self.ncorpus.get(t,0)+(1-scale)*self.mult
+            self.pcorpus[t] = self.pcorpus.get(t,1)+scale*self.mult
+            self.ncorpus[t] = self.ncorpus.get(t,1)+(1-scale)*self.mult
 
     def upvote(self,page):
         '''Shortcut fns for update'''
@@ -101,6 +102,17 @@ class BayesFilter:
 
 bf = BayesFilter()
 
+def read_placeholder():
+    f = open("placeholder")
+    offsets = [int(x) for x in f.read().split(" ")]
+    f.close()
+    return offsets
+
+def write_placeholder(bigoff,liloff):
+    f = open("placeholder")
+    f.write(str(bigoff)+" "+str(liloff))
+    f.close()
+
 # tiny trainer
 while True:
     url = "http://"+host+path+"?"+urllib.urlencode(args.items())
@@ -115,7 +127,7 @@ while True:
         print r.get("url")
         print bf.det(grab_meta(r))
         print "y/n? ",
-        bf.update(grab_meta(r),{'y':1,'n':0}[raw_input()])
+        bf.update(grab_meta(r),{'y':1,'n':0,'m':0.5}.get(raw_input(),'m'))
         
     args["offset"] = str(int(args["offset"])+1)
 

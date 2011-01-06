@@ -1,0 +1,5 @@
+/* header */
+header { padding-left:5%;border-bottom:10px #c0c0c0 solid;
+	 padding-top:50px;
+	 width:100%; }
+h1 { font-size:2em; }

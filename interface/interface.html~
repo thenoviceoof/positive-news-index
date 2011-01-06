@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="reset.css" />
+<link rel="stylesheet" type="text/css" href="interface.css" />
+<script type="text/javascript" src="jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="interface.js"></script>
+</head>
+
+<body>
+<header>
+<h1>Positive News Index - Trainer</h1>
+</header>
+
+<div>
+<ul>
+<li class="hi">
+<details>0.9788</details>
+<h2>Title Here, really, it should be</h2>
+<div class="buttons">
+<code>
+<button>Relevant</button>
+<button>Irrelevant</button>
+</code>
+<code>
+<button>Positive</button>
+<button>Neutral</button>
+<button>Negative</button>
+</code>
+</div>
+<article>
+Article information
+</article>
+</li>
+<li class="lo">
+<h2>Title Here</h2>
+<details>0.0001</details>
+<article>
+Article information
+</article>
+</li>
+<li class="md">
+<h2>Title Here</h2>
+<details>0.5</details>
+<article>
+Article information
+</article>
+</li>
+</ul>
+</div>
+
+<footer>
+Hello world
+</footer>
+
+</body>
+
+</html>

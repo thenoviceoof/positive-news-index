@@ -1,0 +1,14 @@
+/* header */
+header { padding-left:5%;border-bottom:10px #c0c0c0 solid;
+	 padding-top:50px;
+	 width:100%; }
+h1 { font-size:2em; }
+
+/* container */
+div { display:block;margin:1em;
+      width:100%; padding:0; }
+
+/* footer */
+footer { margin-top:2em;padding-left:70%;padding-top:0.4em;
+	 width:100%;
+	 border-top:3px gray solid; }
